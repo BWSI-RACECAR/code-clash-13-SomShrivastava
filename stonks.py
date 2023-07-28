@@ -53,10 +53,6 @@ class Solution:
         for i in range(len(prices)):
             for j in range(i, len(prices)):
                 combinations.append(prices[j] - prices[i])
-                for combination in combinations:
-                    for t in range(len(prices)):                    
-                        for w in range(t, len(prices)):
-                            combinations.append(prices[w] - prices[t])
         return max(combinations)
                 
         
