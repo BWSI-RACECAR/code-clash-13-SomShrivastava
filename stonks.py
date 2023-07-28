@@ -49,20 +49,16 @@ class Solution:
                 isDecreasing = False
         if isDecreasing:
             return 0
-        firstNetProfit = 0
+        combinations = []
         for i in range(len(prices)):
             for j in range(i, len(prices)):
-                if firstNetProfit < prices[j] - prices[i]:
-                    firstNetProfit = prices[j] - prices[i]
-        secondNetProfit = 0
-        for i in range(len(prices)):
-            for j in range(j, len(prices)):
-                if secondNetProfit < prices[j] - prices[i]:
-                    secondNetProfit = prices[j] - prices[i]
-        if secondNetProfit == 0:
-            return firstNetProfit
-        else:
-            return firstNetProfit + secondNetProfit
+                combinations.append(prices[j] - prices[i])
+                for combination in combinations:
+                    for t in range(len(prices)):                    
+                        for w in range(t, len(prices)):
+                            combinations.append(prices[w] - prices[t])
+        return max(combinations)
+                
         
                 
 
