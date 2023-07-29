@@ -43,17 +43,17 @@ class Solution:
         #return type: int
         
         #TODO: Write code below to returnn an int with the solution to the prompt.
-        isDecreasing = True
-        for i in range(len(prices) - 1):
-            if prices[i] >= prices[i + 1]:
-                isDecreasing = False
-        if isDecreasing:
-            return 0
-        combinations = []
-        for i in range(len(prices)):
-            for j in range(i, len(prices)):
-                combinations.append(prices[j] - prices[i])
-        return max(combinations)
+        left = 0 #Buy
+        right = 1 #Sell
+        max_profit = 0
+        while right < len(prices):
+            currentProfit = prices[right] - prices[left] #our current Profit
+            if prices[left] < prices[right]:
+                max_profit = max(currentProfit,max_profit)
+            else:
+                left = right
+            right += 1
+        return max_profit
                 
         
                 
