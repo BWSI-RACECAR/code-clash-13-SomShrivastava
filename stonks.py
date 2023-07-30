@@ -39,35 +39,14 @@ Total profit = 4 + 8 = 12.
 
 class Solution:
     def stonks(self, prices):
-        if len(prices) < 2:
-            return 0
-        if len(prices) == 2:
-            output = prices[1] - prices[0]
-            return output if output > 0 else 0
-        i = 0
-        j = 1
-        stockBuy = prices[i]
-        stockSell = prices[j]
-        counter = 0
-        profit = 0
-        while counter < len(prices)-2:
-            if stockSell - stockBuy < 0:
-                i = counter + 1
-                j = i + 1
-            else:
-                if prices[j+1] > prices[j]:
-                    j += 1
-                else:
-                    profit = profit + (stockSell - stockBuy)
-                    i = counter + 1
-                    j = i + 1
-
-            stockSell = prices[j]
-            stockBuy = prices[i]
-            counter += 1
-        if (stockSell - stockBuy) > 0:
-            profit = profit + (stockSell - stockBuy)
-        return profit 
+      maxprofit=0
+      length=len(prices)
+      for i in range(length):
+        for j in range(i+1):
+          for k in range(j):
+            for l in range(k+1):
+              maxprofit=max(maxprofit, prices[i]-prices[j]+prices[k]-prices[l])
+      return maxprofit
 
 def main():
     array = input().split(" ")
